@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Rain
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Ground
+  - Player
+  - Rain Collider
+  - P1 cam
+  - P2 cam
+  - Water1
+  - Water2
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Tile
+    uniqueID: 198030711
+    locked: 0
+  - name: Background
+    uniqueID: 3795823449
+    locked: 0
+  - name: man_on_wall
+    uniqueID: 215949399
+    locked: 0
+  - name: Light
+    uniqueID: 4116711399
+    locked: 0
+  - name: Player
+    uniqueID: 1816261521
+    locked: 0
+  - name: BackgroundDetails
+    uniqueID: 2576449287
+    locked: 0
