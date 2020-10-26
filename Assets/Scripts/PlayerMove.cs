@@ -30,7 +30,7 @@ public class PlayerMove : MonoBehaviour
     private void Update()
     {
         Jump();
-        if(Input.GetKeyDown(KeyCode.J)&&Input.GetAxis("Horizontal")!=0)
+        if(Input.GetKeyDown(KeyCode.Keypad1))
         {
             ReadyToDash();
         }
@@ -79,14 +79,14 @@ public class PlayerMove : MonoBehaviour
         {
             jumpTimes = 1;
         }
-        if (Input.GetButtonDown("Jump")&&jumpTimes>0)
+        if (Input.GetKeyDown(KeyCode.UpArrow)&&jumpTimes>0)
         {
             rig.velocity = new Vector2(rig.velocity.x, jumpForce*1.4f);
             anim.SetBool("isJumping", true);
             jumpTimes--;
             jumpParticle.Play();
         }
-        if(Input.GetButtonDown("Jump") && jumpTimes == 0 && onGround)
+        if(Input.GetKeyDown(KeyCode.UpArrow) && jumpTimes == 0 && onGround)
         {
             rig.velocity = new Vector2(rig.velocity.x, jumpForce);
             anim.SetBool("isJumping", true);
@@ -139,6 +139,20 @@ public class PlayerMove : MonoBehaviour
     }
     void Dash()
     {
+
+        if (anim.GetBool("isJumping") && Input.GetAxis("Horizontal") == 0)
+        {
+            if (dashTimeLeft > 0)
+            {
+                rig.velocity = new Vector2(rig.velocity.x, 16);
+                dashTimeLeft -= Time.deltaTime;
+                ShadowPool.instance.GetFromPool();
+            }
+            if (dashTimeLeft <= 0)
+            {
+                isDashing = false;
+            }
+        }
         float toward = Input.GetAxisRaw("Horizontal");
         if (isDashing)
         {
