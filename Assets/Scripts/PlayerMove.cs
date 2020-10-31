@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class PlayerMove : MonoBehaviour
     public float dashTime;
     private float dashTimeLeft;
     public float dashSpeed;
+    private float Health = 0;
+    public Slider playerHealthSlider;
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
@@ -29,6 +32,10 @@ public class PlayerMove : MonoBehaviour
     }
     private void Update()
     {
+        if (playerHealthSlider != null)
+        {
+            playerHealthSlider.value = Health;
+        }
         Jump();
         if(Input.GetKeyDown(KeyCode.Keypad1))
         {
@@ -167,5 +174,27 @@ public class PlayerMove : MonoBehaviour
                 isDashing = false;
             }
         }
+    }
+    public void Hurt(float damage)
+    {
+        Health += damage;
+        if (Health >= 100)
+            Dead();
+    }
+    void OnTriggerStay2D(Collider2D col)
+    {
+        if(col.tag == "UnderWater")
+        {
+            Debug.Log(Time.deltaTime);
+            Hurt(10f * Time.deltaTime);
+        }
+        if(col.tag == "Portal")
+        {
+            Application.LoadLevel(2);
+        }
+    }
+    void Dead()
+    {
+        Application.LoadLevel(3);
     }
 }

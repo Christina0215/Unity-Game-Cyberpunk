@@ -15,6 +15,7 @@ public class Player2Move : MonoBehaviour
     private float fallMultiplier = 3f;
     private float lowJumpMultiplier = 2f;
     public ParticleSystem flyParticle;
+    public GameObject Light;
     // Start is called before the first frame update
     void Start()
     {
@@ -68,15 +69,17 @@ public class Player2Move : MonoBehaviour
     {
         if (Input.GetButton("Jump"))
         {
-            rig.velocity = new Vector2(rig.velocity.x, jumpForce * 1.4f);
+            rig.velocity = new Vector2(rig.velocity.x, jumpForce * 1.6f);
             anim.SetBool("isFlying", true);
             flyParticle.Play();
+            Light.SetActive(true);
         }
         if (Input.GetButton("Jump") && onGround)
         {
-            rig.velocity = new Vector2(rig.velocity.x, jumpForce);
+            rig.velocity = new Vector2(rig.velocity.x, jumpForce * 1.6f);
             anim.SetBool("isFlying", true);
             flyParticle.Play();
+            Light.SetActive(true);
         }
     }
     void Fire()
@@ -104,6 +107,7 @@ public class Player2Move : MonoBehaviour
                 anim.SetBool("isFlying", false);
                 anim.SetBool("isFalling", true);
                 rig.velocity += Vector2.up * Physics2D.gravity.y * 10 * (fallMultiplier - 1) * Time.deltaTime;
+                Light.SetActive(false);
             }
             if (rig.velocity.y > 0)
             {
@@ -115,10 +119,12 @@ public class Player2Move : MonoBehaviour
         if(onGround)
         {
             anim.SetBool("isFalling", false);
+            Light.SetActive(false);
         }
         if(onGround && !anim.GetBool("isFalling") && !anim.GetBool("isFlying"))
         {
             anim.SetBool("isIdleing", true);
+            Light.SetActive(false);
         }
     }
 }

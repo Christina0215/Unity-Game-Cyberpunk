@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Rain
+  - Ground
+  - UnderWater
+  - Portal
   layers:
   - Default
   - TransparentFX
@@ -62,4 +65,7 @@ TagManager:
     locked: 0
   - name: UnderWater
     uniqueID: 4003347387
+    locked: 0
+  - name: Bullet
+    uniqueID: 3360324261
     locked: 0
